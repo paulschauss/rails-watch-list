@@ -4,3 +4,25 @@
   </div>
 </div>
 <%= link_to 'Add a movie', new_list_bookmark_path(@list), class: "btn btn-gradient" %>
+
+<% if @list.bookmarks.any? %>
+<div class="banner">
+  <div class="card-movie col-6">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <div class="card-movie-infos">
+      <% @list.bookmarks.each do |bookmark| %>
+        <h2><%= bookmark.movie.title %></h2>
+        <p><%= bookmark.movie.overview %></p>
+        <p><%= bookmark.comment %></p>
+        <p><%= link_to "Delete",
+            bookmark_path(bookmark),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+          </p>
+      <% end %>
+      <h2 class="card-movie-pricing">£99.99</h2>
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    </div>
+  </div>
+</div>
+<% end %>
