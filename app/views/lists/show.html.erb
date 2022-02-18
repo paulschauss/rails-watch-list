@@ -8,7 +8,9 @@
 <% if @list.bookmarks.any? %>
 <div class="banner">
   <div class="card-movie col-6">
-    <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+    <% if @list.photo.attached? %>
+      <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
     <div class="card-movie-infos">
       <% @list.bookmarks.each do |bookmark| %>
         <h2><%= bookmark.movie.title %></h2>
